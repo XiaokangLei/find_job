@@ -1,0 +1,51 @@
+{
+  "pages": [
+    "pages/index/index",
+    "pages/mine/mine",
+    "pages/detail/detail",
+    "pages/mine/collection/collection",
+    "pages/mine/notice/notice",
+    "pages/mine/release/release",
+    "pages/mine/sign/sign",
+    "pages/mine/point/point",
+    "pages/mine/point/pointDetail",
+    "pages/admin/article/article",
+    "pages/experience/experience"
+  ],
+  "window": {
+    "navigationBarBackgroundColor": "#39b54a",
+    "navigationBarTitleText": "小贝校招",
+    "navigationBarTextStyle": "white",
+    "navigationStyle": "custom"
+  },
+  "tabBar": {
+    "color": "#959394",
+    "selectedColor": "#1296db",
+    "backgroundColor": "#fff",
+    "borderStyle": "black",
+    "list": [
+      {
+        "pagePath": "pages/index/index",
+        "iconPath": "/images/tab/index.png",
+        "selectedIconPath": "/images/tab/index_clicked.png",
+        "text": "首页"
+      },
+      {
+        "pagePath": "pages/experience/experience",
+        "iconPath": "/images/tab/function.png",
+        "selectedIconPath": "/images/tab/function_clicked.png",
+        "text": "面经"
+      },
+      {
+        "pagePath": "pages/mine/mine",
+        "iconPath": "/images/tab/mine.png",
+        "selectedIconPath": "/images/tab/mine_clicked.png",
+        "text": "我的"
+      }
+    ]
+  },
+  "usingComponents": {
+    "cu-custom": "/components/colorui/cu-custom"
+  },
+  "sitemapLocation": "sitemap.json"
+}
