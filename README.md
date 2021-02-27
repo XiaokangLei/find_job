@@ -12,9 +12,22 @@
 
 ### 首页
 
-- 首页包括：顶部
+![index][index]
+
+### 详情
+
+![detail][detail]
+![detail1][detail1]
+
+### 用户中心
+
+![my][my]
 
 ## 参考文档
 
 - [云开发文档](https://developers.weixin.qq.com/miniprogram/dev/wxcloud/basis/getting-started.html)
 
+[index]:markdown_pic/2021-02-27_194720.jpg "index"
+[detail]:markdown_pic/2021-02-27_194748.jpg "detail"
+[detail1]:markdown_pic/2021-02-27_194803.jpg "detail1"
+[my]:markdown_pic/2021-02-27_194823.jpg "my"
