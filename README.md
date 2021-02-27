@@ -23,6 +23,10 @@
 
 ![my][my]
 
+### 小程序码
+
+![qr][qr]
+
 ## 参考文档
 
 - [云开发文档](https://developers.weixin.qq.com/miniprogram/dev/wxcloud/basis/getting-started.html)
@@ -31,3 +35,4 @@
 [detail]:markdown_pic/2021-02-27_194748.jpg "detail"
 [detail1]:markdown_pic/2021-02-27_194803.jpg "detail1"
 [my]:markdown_pic/2021-02-27_194823.jpg "my"
+[qr]:markdown_pic/gh_763564d14dd6_258.jpg "qr"
