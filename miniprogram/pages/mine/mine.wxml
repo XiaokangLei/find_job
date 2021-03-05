@@ -1,0 +1,126 @@
+<import src="../../templates/login/login.wxml" />
+<cu-custom bgColor="bg-gradual-pink" isBack="{{false}}">
+	<view slot="backText">返回</view>
+	<view slot="content">个人中心</view>
+</cu-custom>
+
+<view class="padding-sm">
+	<view class="bg-gradual-pink padding radius shadow-blur" >
+		<view class="flex solid-bottom justify-between align-center">
+			<view class="flex padding-sm align-center">
+				<view class="avatar round margin-xs radius">
+					<open-data class=" round avatar margin-top-xl" type="userAvatarUrl"></open-data>
+				</view>
+				<view class="padding-sm margin-xs radius">
+					<open-data type="userNickName" class="text-xl"></open-data>
+				</view>
+			</view>
+			<view class="flex padding-sm  flex-direction text-center text-grey " style="margin-right: 36rpx;">
+				<view class="text-xxl text-orange">{{visitTotal}}</view>
+				<view class="margin-top-sm">
+					<text class="cuIcon-attentionfill"></text> View</view>
+			</view>
+		</view>
+		<!-- <view class="flex solid-bottom justify-between align-center">
+			<view class="padding-sm radius">
+				已连续打卡:
+				<text class="text-sl">{{signedDays}}</text>
+				天
+			</view>
+			<view class="padding-sm radius">
+				<button class="text-df cu-btn round bg-green " bindtap="btnSigned">{{signBtnTxt}}</button>
+			</view>
+		</view> -->
+	</view>
+
+</view>
+<view class="cu-list grid col-3 no-border">
+	<view class="cu-item" wx:for="{{iconList}}" wx:key="idx" bindtap="{{item.bindtap}}">
+		<view class="cuIcon-{{item.icon}} text-{{item.color}}">
+			<view class="cu-tag badge" wx:if="{{item.badge!=0}}">
+				<block wx:if="{{item.badge!=1}}">{{item.badge>99?"99+":item.badge}}</block>
+			</view>
+		</view>
+		<text>{{item.name}}</text>
+	</view>
+</view>
+
+
+<view class="cu-list menu card-menu_new margin-top-sm shadow-lg radius">
+	<!-- <view class="cu-item arrow">
+		<view class='content' bindtap="showQrcode">
+			<text class='cuIcon-refund text-red'></text>
+			<text class='text-grey'>打赏支持</text>
+		</view>
+	</view> -->
+
+	<view class="cu-item arrow" bindtap='showRelease'>
+		<view class='content' hover-class='none'>
+			<text class='cuIcon-formfill text-blue'></text>
+			<text class='text-grey'>历史版本</text>
+		</view>
+	</view>
+
+	<view class="cu-item arrow">
+		<button class='cu-btn content'  open-type='contact'>
+			<text class='cuIcon-markfill text-green'></text>
+			<text class='text-grey'>我要内推</text>
+		</button>
+	</view>
+
+	<view class="cu-item arrow" >
+		<button class='cu-btn content' open-type='feedback'>
+			<text class='cuIcon-writefill text-cyan'></text>
+			<text class='text-grey'>意见反馈</text>
+		</button>
+	</view>
+
+	<view class="cu-item arrow" bindtap="showQrcode">
+		<view class='content' >
+			<text class='cuIcon-refund text-red'></text>
+			<text class='text-grey'>打赏支持</text>
+		</view>
+	</view>
+
+	<view class="cu-item arrow" bindtap='showAbout'>
+		<view class='content' hover-class='none'>
+			<text class='cuIcon-infofill text-yellow'></text>
+			<text class='text-grey'>关于</text>
+		</view>
+	</view>
+
+	<view wx:if="{{isAuthor}}" class="cu-item arrow  margin-top-sm" bindtap="showAdmin">
+		<view class='content' >
+			<text class='cuIcon-settings text-gary'></text>
+			<text class='text-grey'>后台管理</text>
+		</view>
+	</view>
+
+</view>
+
+
+<!-- vip窗口 -->
+<view class="cu-modal {{showVIPModal?'show':''}}">
+	<view class="cu-dialog">
+		<view class="cu-bar bg-white justify-end">
+			<view class="content">成为VIP说明</view>
+			<view class="action" bindtap="hideModal">
+				<text class="cuIcon-close text-red"></text>
+			</view>
+		</view>
+		<view class="padding-xl bg-white">
+			<view>申请条件：打赏过作者的用户即可申请</view>
+			<view>VIP权益：拥有VIP专属标签、昵称高亮</view>
+		</view>
+		<view class="cu-bar bg-white">
+			<view class="action margin-0 flex-sub " bindtap="hideModal">取消</view>
+			<view class="action margin-0 flex-sub text-green solid-left" bindtap="showMoneryUrl">
+				打赏
+			</view>
+			<view class="action margin-0 flex-sub text-green solid-left" bindtap="applyVip">
+				申请
+			</view>
+		</view>
+	</view>
+</view>
+<template is="login" data="{{showLogin: showLogin}}"></template>

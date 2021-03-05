@@ -1,0 +1,34 @@
+<import src="../../../templates/nodata.wxml" />
+<cu-custom bgColor="bg-gradual-pink" isBack="{{true}}">
+	<view slot="backText">返回</view>
+	<view slot="content">{{tabCur == 1?'我的收藏':'我的点赞'}}</view>
+</cu-custom>
+
+<!-- <scroll-view scroll-x class="bg-white nav ">
+  <view class='flex text-center'>
+    <block wx:for="{{navItems}}" wx:key="idx" wx:for-index="idx" data-data="{{item}}">
+      <view class="cu-item flex-sub {{item.index==tabCur?'text-green cur':''}}" bindtap='tabSelect' data-id="{{item.index}}">
+        {{item.name}}
+      </view>
+    </block>
+  </view>
+</scroll-view> -->
+
+<!--文章列表-->
+<view class="cu-card article">
+  <view wx:for="{{postRelated}}"  wx:key="idx" wx:for-index="idx" wx:for-item="item" data-idx="{{idx}}" id="{{item.postId}}" bindtap="bindPostDetail"  class="cu-item shadow solids-bottom">
+    <view class="title text-cut ">{{item.postTitle}}</view>
+    <view class="content">
+      <view class="desc">
+      
+        <view class='text-gray text-sm text-right'>
+          <text class="cuIcon-{{desc}} text-orange"></text>{{timeDesc}} {{item.createTime}}
+        </view>
+      </view>
+    </view>
+  </view>
+</view>
+<!-- 数据不存在 -->
+<view wx:if="{{nodata}}">
+  <template is="nodata" />
+</view>

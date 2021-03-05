@@ -1,0 +1,252 @@
+.comment-fixed {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  background-color: #fff;
+  box-shadow: 0 0 6px rgba(30, 20, 20, 0.1);
+  z-index: 1;
+  /*margin-bottom:2rpx; */
+}
+
+.menu-box {
+  position: relative;
+  height: 160rpx;
+  padding: 0;
+  box-sizing: border-box;
+  margin-bottom: -160rpx;
+}
+
+.menu-box .item {
+  padding-top: 0;
+  margin-top: 0;
+}
+
+.emoji-move-in {
+  margin-bottom: 0;
+  /*去除动画效果，有点迟钝 2019-05-11*/
+  /*-webkit-animation: emoji-move-in 0.3s forwards;
+  animation: emoji-move-in 0.3s forwards;*/
+}
+
+.emoji-move-out {
+  margin-bottom: -160rpx;
+  /*-webkit-animation: emoji-move-out 0.3s forwards;
+  animation: emoji-move-out 0.3s forwards;*/
+}
+
+.no-emoji-move {
+  -webkit-animation: none;
+  animation: none;
+}
+
+.share-button {
+  opacity: 0;
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  margin: 0;
+  padding: 0;
+  top: 0;
+  left: 0;
+}
+
+@-webkit-keyframes emoji-move-in {
+  0% {
+    margin-bottom: -160rpx;
+  }
+
+  100% {
+    margin-bottom: 0;
+  }
+}
+
+@keyframes emoji-move-in {
+  0% {
+    margin-bottom: -160rpx;
+  }
+
+  100% {
+    margin-bottom: 0;
+  }
+}
+
+@-webkit-keyframes emoji-move-out {
+  0% {
+    margin-bottom: 0;
+  }
+
+  100% {
+    margin-bottom: -160rpx;
+  }
+}
+
+@keyframes emoji-move-out {
+  0% {
+    margin-bottom: 0;
+  }
+
+  100% {
+    margin-bottom: -160rpx;
+  }
+}
+
+.detail-body {
+  line-height: 64rpx;
+  letter-spacing: 1px;
+  overflow: hidden;
+  overflow-x: hidden;
+  position: relative;
+}
+
+/* “阅读更多”样式 */
+
+.detail-read-more {
+  width: 100%;
+  position: absolute;
+  bottom: 0;
+}
+
+.detail-readmore-mask {
+  height: 200rpx;
+  width: 100%;
+  box-sizing: border-box;
+  background-image: linear-gradient(to bottom, rgba(255, 255, 255, 0) 0%, rgba(255, 255, 255, 1) 80%);
+}
+
+.detail-readmore-btn {
+  width: 100%;
+  height: 64rpx;
+  font-size: 30rpx;
+  font-weight: 500;
+  line-height: 1;
+  text-align: center;
+  color: #2f80ed;
+  position: absolute;
+  bottom: 0;
+  left: 50%;
+  transform: translateX(-50%);
+}
+
+.detail-readmore-btn::after {
+  content: "";
+  display: inline-block;
+  border: solid #2f80ed;
+  border-width: 0 0 2px 2px;
+  padding: 3px;
+  position: absolute;
+  right: 50%;
+  bottom: 6rpx;
+  transform: translateX(4px) rotate(-45deg);
+  opacity: 0.6;
+}
+.space-title{
+	font-size: 32rpx;
+	line-height: 2;
+}
+.space-block-title{
+	font-size: 36rpx;
+}
+.space-block-title:before{
+	content: '';
+	display: inline-block;
+	vertical-align: -6rpx;
+	width: 6rpx;
+	height: 40rpx;
+	background: #f7982a;
+	margin-right: 8rpx;
+}
+
+.space-block-content .space-list{
+	overflow: hidden;
+}
+.space-block-content .space-list .space-item{
+	width: 50%;
+  float: left;
+}
+.space-item{
+	display: block;
+	font-size: 28rpx;
+  color: #555;
+  /* line-height:48rpx; */
+	/* border-bottom: 1rpx solid #eee; */
+}
+.space-item .text-left{
+	white-space: nowrap;
+}
+.space-item .text-orange{
+	font-size: 40rpx;
+	color: #f7982a;
+	line-height: 1;
+}
+.space-item .text-right{
+  color: #777;
+  white-space:pre-line
+}
+.space-top,.space-block{
+	padding: 20rpx;
+	background: #fff;
+	margin-bottom: 20rpx;
+	border-bottom: 1rpx solid #ddd;
+}
+
+
+.table {
+  border: 0px solid darkgray;
+}
+.tr {
+  display: flex;
+  width: 100%;
+  justify-content: center;
+  height: 2rem;
+  align-items: center;
+}
+.td {
+    width:40%;
+    justify-content: center;
+    text-align: center;
+}
+.bg-w{
+  background: snow;
+}
+.bg-g{
+  background: #E6F3F9;
+}
+.th {
+  width: 40%;
+  justify-content: center;
+  background: #e2e6e0;
+  /* color: #fff; */
+  display: flex;
+  height: 2rem;
+  align-items: center;
+}
+
+.bottom-container{
+  font-size: 28rpx;
+  text-align: center;
+  padding: 30rpx 0;
+}
+
+/* 返回顶部 */
+.goTop{
+  height: 70rpx;
+  width: 70rpx;
+  position: fixed;
+  bottom: 215rpx;
+  /* background: rgba(0,0,0,.3); */
+  right: 48rpx;
+  border-radius: 50%;
+ }
+
+ 
+/* 返回底部 */
+.goBottom{
+  height: 70rpx;
+  width: 70rpx;
+  position: fixed;
+  bottom: 130rpx;
+  /* background: rgba(0,0,0,.3); */
+  right: 48rpx;
+  border-radius: 50%;
+ }

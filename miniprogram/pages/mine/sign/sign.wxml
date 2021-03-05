@@ -1,0 +1,33 @@
+<cu-custom bgColor="bg-gradual-green" isBack="{{true}}">
+	<view slot="backText">返回</view>
+	<view slot="content">打卡</view>
+</cu-custom>
+<view class="margin-sm text-white">
+	<view class="radius">
+		已连续打卡:
+		<text class="text-sl">{{signedDays}}</text>
+		天,拥有 <text class="text-sl">{{signedRightCount}}</text> 次补签机会
+	</view>
+	<view class="radius text-white text-sm">连续打卡可以获取更多积分哦</view>
+</view>
+<view class="bg-white margin-sm radius">
+	<view class="padding-sm">
+		<calendar id="calendar" calendarConfig="{{calendarConfig}}" bind:onTapDay="onTapDay" bind:afterTapDay="afterTapDay" bind:whenChangeMonth="whenChangeMonth" bind:afterCalendarRender="afterCalendarRender"></calendar>
+	</view>
+	<view class='sign-new'>
+		<view class='new-head'>
+			<!-- 未签到 -->
+			<view wx:if='{{!signed}}' class='sig-qiu sig-qiu-no' bindtap='Sign_in'>
+				<label class='ti'>打卡</label>
+			</view>
+			<!-- 已签到 -->
+			<view wx:else class='sig-qiu sig-qiu-yes'>
+				<label class='ti'>已打卡</label>
+			</view>
+		</view>
+	</view>
+</view>
+
+<!-- 弹出层：授权 -->
+<import src="../../../templates/login/login.wxml" />
+<template is="login" data="{{showLogin: showLogin}}"></template>

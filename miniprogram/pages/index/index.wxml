@@ -1,0 +1,197 @@
+<import src="../../templates/nodata.wxml" />
+<import src="../../templates/nomore.wxml" />
+<import src="../../templates/login/login.wxml" />
+
+<cu-custom bgColor="bg-gradual-pink" isBack="{{false}}">
+	<view slot="backText">返回</view>
+	<view slot="content">小贝校招</view>
+</cu-custom>
+
+<!-- 搜索栏 -->
+<view class='box'>
+
+	<form bindsubmit='bindconfirm'>
+		<view class="cu-bar search bg-white fixed" style="top:{{CustomBar}}px">
+			<view class='search-form radius'>
+				<text class="cuIcon-search"></text>
+				<input type="text" placeholder="搜索感兴趣的公司" value="{{defaultSearchValue}}" bindconfirm="bindconfirm"
+					name="searchContent" confirm-type="search"></input>
+			</view>
+			<view class="action" wx:if="{{isSearch}}" catchtap="cancelSearch">
+				<text class="cu-btn radius bg-green shadow">取消</text>
+			</view>
+		</view>
+	</form>
+
+	<swiper style="margin-top:65rpx" class="card-swiper square-dot" indicator-dots="true" circular="true" autoplay="true"
+		interval="5000" duration="500" bindchange="cardSwiper" indicator-color="#8799a3" indicator-active-color="#0081ff">
+		<swiper-item wx:for="{{swiperList}}" wx:key="ids" class="{{cardCur==index?'cur':''}}" id="{{item.goto}}"
+			bindtap="bindPostDetail">
+			<view class="swiper-item">
+				<image src="{{item.url}}" mode="aspectFill" wx:if="{{item.type=='image'}}"></image>
+				<video src="{{item.url}}" autoplay loop muted show-play-btn="{{false}}" controls="{{false}}" objectFit="cover"
+					wx:if="{{item.type=='video'}}"></video>
+			</view>
+		</swiper-item>
+	</swiper>
+
+	<scroll-view scroll-x="true" class="bg-white nav solid-bottom">
+		<view class="flex text-center">
+			<view wx:for="{{navItems}}" wx:key="idx" wx:for-index="idx" data-data="{{item}}"
+				class="cu-item flex-sub {{item.index==tabCur?'text-green cur':''}}" bindtap='tabSelect'
+				data-id="{{item.index}}">
+				{{item.name}}
+			</view>
+		</view>
+	</scroll-view>
+	<scroll-view wx:if="{{showHot}}" scroll-x class="bg-white nav solids-bottom">
+		<view class="padding bg-white">
+			<view wx:for="{{hotItems}}" wx:key="idx" wx:for-index="idx" data-data="{{item}}"
+				class="cu-tag round lg {{idx==hotCur?'bg-blue':''}}" bindtap='hotSelect' data-id="{{idx}}">
+				{{item}}
+			</view>
+		</view>
+	</scroll-view>
+</view>
+
+<!-- 内容 begin -->
+<!-- <view class="bg-grey">
+	<view class="bg-white" wx:for="{{posts}}" wx:if="{{item.data_1}}" wx:key="idx" wx:for-index="idx" wx:for-item="item"
+		data-idx="{{idx}}" id="{{item._id}}" bindtap="bindPostDetail">
+
+		<view class="cu-list menu-avatar solid-bottom ">
+			<view style="margin-top:16rpx; margin-left:30rpx">
+				<text class="text-cut text-bold" style="font-size: 34rpx;">{{item.title}}</text>
+				<view class="cu-tag radius bg-mauve light df" wx:if="{{item.status === 0}}">提前批</view>
+				<view class="cu-tag radius bg-orange light df" wx:elif="{{item.status === 2}}">秋招</view>
+				<view class="cu-tag radius bg-green light df" wx:elif="{{item.status === 1}}">春招</view>
+				<view class="cu-tag radius bg-red df" wx:if="{{item.info}}">内推</view>
+				<view class="cu-tag radius line-red df" wx:if="{{!item.isnow}}">截止</view>
+				<view class="cuIcon-hotfill text-red df" wx:if="{{ishot < item.totalVisits}}"></view>
+			</view>
+			<view class="cu-item cur">
+				<view class="cu-avatar radius lg" style="background-image:url({{item.logo}});">
+				</view>
+				<view class="content">
+					<view>
+					<text class="text-cut text-bold" style="font-size: 34rpx;">{{item.title}}</text>
+					<view class="cu-tag radius bg-mauve light df" wx:if="{{item.status === 0}}">提前批</view>
+					<view class="cu-tag radius bg-orange light df" wx:elif="{{item.status === 2}}">秋招</view>
+					<view class="cu-tag radius bg-green light df" wx:elif="{{item.status === 1}}">春招</view>
+					<view class="cu-tag radius bg-red df" wx:if="{{item.info}}">内推</view>
+					<view class="cu-tag radius line-red df" wx:if="{{!item.isnow}}">截止</view>
+					<view class="cuIcon-hotfill text-red df" wx:if="{{ishot < item.totalVisits}}"></view>
+				</view>
+					<view class="desc">
+						<view class="text-grey text-df flex">
+							<text class="cuIcon-favorfill text-green margin-right-xs"></text>
+							<view class="text-content"><text>岗位：{{item.work}}</text></view>
+						</view>
+					</view>
+					<view class="desc">
+						<view class="text-grey text-df flex">
+							<text class="cuIcon-noticefill text-green margin-right-xs"></text>
+							<view class="text-content"> 工作地点：{{item.address}}</view>
+						</view>
+					</view>
+					<view class="desc">
+						<view class="text-grey text-df flex">
+							<text class="cuIcon-noticefill text-green margin-right-xs"></text>
+							<view class="text-content">截止时间：{{item.data_1}}-{{item.data_2}}</view>
+						</view>
+					</view>
+				</view>
+				<view class="action">
+					<view class="cuIcon-right text-gray"></view>
+				</view>
+			</view>
+		</view>
+
+	</view>
+	
+</view> -->
+<view style="margin-top: 10rpx;">
+	<view class="bg-gray" wx:for="{{posts}}" wx:if="{{item.data_1}}" wx:key="idx" wx:for-index="idx" wx:for-item="item"
+		data-idx="{{idx}}" id="{{item._id}}" bindtap="bindPostDetail">
+
+		<view class="cu-card article {{isCard?'no-card':''}}">
+			<view class="cu-item shadow">
+				<view class="title">
+					<text class="text-cut">{{item.title}}</text>
+					<view class="cu-tag radius bg-mauve light df" wx:if="{{item.status === 0}}">提前批</view>
+					<view class="cu-tag radius bg-orange light df" wx:elif="{{item.status === 2}}">秋招</view>
+					<view class="cu-tag radius bg-green light df" wx:elif="{{item.status === 1}}">春招</view>
+					<view class="cu-tag radius bg-red df" wx:if="{{item.info}}">内推</view>
+					<view class="cu-tag radius line-red df" wx:if="{{!item.isnow}}">截止</view>
+					<!-- <view class="cuIcon-hotfill text-red df" wx:if="{{ishot < item.totalVisits}}"></view> -->
+				</view>
+				<view class="content">
+					<view class="cu-avatar radius self" style="background-image:url({{item.logo}});"></view>
+					<!-- <image src="{{item.logo}}" mode="aspectFill"></image> -->
+					<view class="desc">
+						<view class="text-content"><text class="cuIcon-favorfill text-green margin-right-xs"></text>{{item.work}}</view>
+						<view class="text-content"><text class="cuIcon-locationfill text-green margin-right-xs"></text>{{item.address}}</view>
+						<view class="text-content"><text class="cuIcon-noticefill text-green margin-right-xs"></text>{{item.data_1}}-{{item.data_2}}</view>
+						<view class="text-content">
+							<view class="text-grey text-df flex">
+								<text class="cuIcon-favor text-orange margin-right-xs"></text>
+								<text decode="{{true}}">{{item.totalCollection}}&ensp;</text>
+								<text class="cuIcon-message text-orange margin-right-xs"></text>
+								<text decode="{{true}}">{{item.totalComments}}&ensp;</text>
+								<text class="cuIcon-like text-orange margin-right-xs"></text>
+								<text decode="{{true}}">{{item.totalZans}}&ensp;</text>
+								<text class="cuIcon-attention text-orange margin-right-xs"></text>
+								<text decode="{{true}}">{{item.totalVisits}}&ensp;</text>
+							</view>
+						</view>
+					</view>
+				</view>
+			</view>
+		</view>
+		<!-- <view class="cu-list menu-avatar solid-bottom ">
+
+			<view class="title">
+				<text class="text text-bold" style="font-size: 28rpx;">{{item.title}}</text>
+			</view>
+
+			<view class="cu-item cur">
+
+				<view class="cu-avatar radius lg" style="background-image:url({{item.logo}});"></view>
+				<view class="content">
+
+					<view class="text-grey text-df flex">
+						<text class="text1">{{item.work}}</text>
+					</view>
+
+					<view class="text-grey text-df flex">
+						<text class="cuIcon-favor text-orange margin-right-xs"></text>
+						<text decode="{{true}}">{{item.totalCollection}}&ensp;</text>
+						<text class="cuIcon-message text-orange margin-right-xs"></text>
+						<text decode="{{true}}">{{item.totalComments}}&ensp;</text>
+						<text class="cuIcon-like text-orange margin-right-xs"></text>
+						<text decode="{{true}}">{{item.totalZans}}&ensp;</text>
+						<text class="cuIcon-attention text-orange margin-right-xs"></text>
+						<text decode="{{true}}">{{item.totalVisits}}&ensp;</text>
+					</view>
+
+				</view>
+			</view>
+		</view> -->
+
+	</view>
+</view>
+
+<!-- </view> -->
+<!-- 数据不存在 -->
+<view wx:if="{{nodata}}">
+	<template is="nodata" />
+</view>
+
+<!-- 数据不存在 -->
+<view wx:if="{{nomore}}">
+	<template is="nomore" />
+</view>
+
+
+<!-- 弹出层：授权 -->
+<template is="login" data="{{showLogin: showLogin}}"></template>

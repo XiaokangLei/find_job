@@ -1,0 +1,13 @@
+.avatar {
+    width:100rpx;
+    height:100rpx;
+  }
+
+.signbanner{
+    border-radius:10rpx 10rpx 0 0;
+}
+
+.cu-list-special{
+    padding: 15rpx;
+    
+}

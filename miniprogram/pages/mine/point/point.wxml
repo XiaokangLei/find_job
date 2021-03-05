@@ -1,0 +1,128 @@
+<!-- 弹出层：授权 -->
+<import src="../../../templates/login/login.wxml" />
+<cu-custom bgColor="bg-gradual-pink" isBack="{{true}}">
+	<view slot="backText">返回</view>
+	<view slot="content">积分中心</view>
+</cu-custom>
+<view class="padding bg-white">
+	<view class="text-center text-xxl">我的积分总数</view>
+	<view class="padding-xs text-center text-red text-sl">{{totalPoints}}</view>
+	<view class="text-xl text-center">
+		<text class="cuIcon-time text-xl text-right text-green"></text>
+		<text bindtap="showUsingDetail">积分明细</text>
+		<text class="cuIcon-question padding-left-xs text-xl text-right text-green"></text>
+		<text bindtap="showPointDesc">积分说明</text>
+	</view>
+</view>
+<view class="margin-top-sm bg-white">
+	<view class="text-left text-black text-bold text-xl padding">积分权益</view>
+	<view class="flex solid-bottom align-center margin-left margin-right ">
+		<view class="flex-sub margin-xs bg-gradual-green ssignbanner shadow-blur radius point-task">
+			补签
+		</view>
+		<view class="flex-twice margin-xs">
+			<view>忘记打卡不用怕</view>
+			<view class="text-sm text-green">200积分/次</view>
+		</view>
+		<view class="flex-treble margin-xs text-right">
+			<button class="cu-btn round bg-gradual-green shadow" bindtap="clickForgetRight">立即兑换</button>
+		</view>
+	</view>
+	<view class="flex solid-bottom align-center margin-left margin-right padding-bottom ">
+		<view class="flex-sub margin-xs bg-gradual-green signbanner shadow-blur radius point-task">
+			高亮
+		</view>
+		<view class="flex-twice margin-xs">
+			<view>昵称永久高亮</view>
+			<view class="text-sm text-green">10000积分/永久</view>
+		</view>
+		<view class="flex-treble margin-xs text-right">
+			<button bindtap="clickHighLight" class="cu-btn round {{highLighted==1?'bg-grey':'bg-gradual-green'}} shadow">
+				{{highLightBtnTxt}}
+			</button>
+		</view>
+	</view>
+</view>
+<view class="margin-top-sm bg-white">
+	<view class="text-left text-black text-bold text-xl padding">做任务，得积分</view>
+	<!-- <view class="flex solid-bottom align-center margin-left margin-right ">
+		<view class="flex-sub margin-xs bg-gradual-orange signbanner shadow-blur radius point-task">
+			50积分
+		</view>
+		<view class="flex-twice margin-xs">
+			<view>观看完整视频</view>
+			<view class="text-sm text-red">+50积分/次</view>
+		</view>
+		<view class="flex-treble margin-xs text-right">
+			<button class="cu-btn round bg-orange shadow" bindtap="clickVideoTask">立即观看</button>
+		</view>
+	</view> -->
+	<view class="flex solid-bottom align-center margin-left margin-right padding-bottom">
+		<view class="flex-sub margin-xs bg-gradual-orange signbanner shadow-blur radius point-task">
+			30积分
+		</view>
+		<view class="flex-twice margin-xs">
+			<view>今日打卡</view>
+			<view class="text-sm text-red">最高+30积分/天</view>
+		</view>
+		<view class="flex-treble margin-xs text-right">
+			<button bindtap="clickSigned" class="cu-btn round {{signed==1?'bg-grey':'bg-orange'}} shadow">
+				{{signBtnTxt}}
+			</button>
+		</view>
+	</view>
+</view>
+<view class="margin-top-sm bg-white">
+	<view class="text-left text-black text-bold text-xl padding">分享好友，得积分</view>
+	<view class="text-center ">
+		每邀请一位新用户，可获得
+		<text class="text-red">100</text>
+		积分
+	</view>
+	<view class="flex solid-bottom padding justify-between">
+		<view class="margin-xs" wx:for="{{shareList}}" wx:key="idx" wx:for-index="idx" wx:for-item="item">
+			<view class="cu-avatar lg round {{item.bgUrl}}" style="{{item.style}}">
+				<text class="{{item.icon}} lg text-gray"></text>
+			</view>
+			<view class="text-center text-sm">{{item.nickName}}</view>
+		</view>
+	</view>
+	<view class="text-center padding-bottom">
+		<button open-type="share" class="cu-btn btn-width round bg-gradual-orange signbanner shadow-blur shadow">
+			立即邀请
+		</button>
+	</view>
+</view>
+<view wx:if="{{showBanner}}" class="cu-item margin-top-sm">
+	<view class="content padding-right-xs padding-left-xs">
+		<ad unit-id="{{showBannerId}}" ad-type="grid" grid-opacity="0.8" grid-count="5" ad-theme="white"></ad>
+	</view>
+</view>
+
+<!-- 积分说明窗口 -->
+<view class="cu-modal {{showPointDescModal?'show':''}}">
+	<view class="cu-dialog">
+		<view class="cu-bar bg-white justify-end">
+			<view class="content">积分说明</view>
+			<view class="action" bindtap="hidePointDesc">
+				<text class="cuIcon-close text-red"></text>
+			</view>
+		</view>
+		<view class="padding-xl bg-white">
+			<view class="padding-sm text-xl text-black text-bold text-center">如何获取积分</view>
+			<view class="text-left">1、坚持打卡，连续打卡可获得相应天数积分，最高30</view>
+			<!-- <view class="text-left">2、观看视频，每次可获得50积分</view> -->
+			<view class="text-left">2、邀请好友，最高每天可得100积分</view>
+			<view class="padding-sm text-xl text-black text-bold text-center">积分的作用</view>
+			<view class="text-left">1、评论列表中头像昵称高亮</view>
+			<view class="text-left">2、兑换忘打卡补签权益</view>
+			<view class="text-left">3、后续补充权益</view>
+		</view>
+		<view class="cu-bar bg-white">
+			<view class="action margin-0 flex-sub text-green solid-left" bindtap="hidePointDesc">
+				我知道了
+			</view>
+		</view>
+	</view>
+</view>
+<template is="login" data="{{showLogin: showLogin}}"></template>

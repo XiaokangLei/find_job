@@ -1,0 +1,18 @@
+<import src="../../../templates/nodata.wxml" />
+<cu-custom bgColor="bg-gradual-pink" isBack="{{true}}"><view slot="backText">返回</view><view slot="content">历史版本</view></cu-custom>
+
+<view class="cu-timeline">
+    <view wx:for="{{logs}}" wx:key="idx" wx:for-index="idx" wx:for-item="item" data-idx="{{idx}}" id="{{item._id}}"  class="cu-item text-green">
+        <view class="bg-gradual-blue content shadow">
+            <view class="cu-capsule radius">
+                <view class="cu-tag bg-white text-green">{{item.content.releaseName}}</view>
+                <view class="cu-tag line-white">{{item.content.releaseDate}}</view>
+            </view>
+            <view class="{{id=='0'?'margin-top':''}}" wx:for="{{item.content.releaseContent}}" wx:key="id" wx:for-index="id" wx:for-item="childItem">{{childItem}}</view>
+        </view>
+    </view>
+</view>
+<!-- 数据不存在 -->
+<view wx:if="{{nodata}}">
+  <template is="nodata" />
+</view>
